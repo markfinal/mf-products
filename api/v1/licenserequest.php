@@ -123,12 +123,12 @@ function licenserequest()
     $response['session'] = base64_encode($session);
     $response['length'] = strlen($session);
     $response['typename'] = $lic_type;
-    $response['typeid'] = $license_valid['type'];
+    $response['typeid'] = intval($license_valid['type']);
     $response['productname'] = $json['productname'];
 
     // remaining days is the last value returned from license_validate
     $values = array_values($license_valid);
-    $response['remainingdays'] = array_slice($values, -1, 1)[0];
+    $response['remainingdays'] = intval(array_slice($values, -1, 1)[0]);
 
     header('Content-Type: application/json', true, 201);
     echo json_encode($response);
