@@ -68,6 +68,7 @@ function authorisemachine($url)
 
     // TODO: write some nice HTML
     $message .= '<p>Machine with MAC address '.$request['MAC'].' has been authorised for use for '.$request['email'].'</p>';
+    $message .= '<p>You can now close this window.</p>';
     $message .= $html_suffix;
 
     storelog("Machine has been authorised", $user_id, $host_id);
