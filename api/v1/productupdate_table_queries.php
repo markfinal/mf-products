@@ -8,7 +8,7 @@ function productupdate_getupdatemessage($product_id, $majorversion, $minorversio
     $connection = connectdb();
 
     // if there are multiple updates available, select the most recent (assuming I always increase the version number)
-    $query = $connection->prepare('SELECT message FROM ProductUpdate WHERE product=:product AND (major_version>:major OR minor_version>:minor OR patch_version>:patch OR build>:build OR phase>:phase) ORDER BY id DESC LIMIT 1');
+    $query = $connection->prepare('SELECT link FROM ProductUpdate WHERE product=:product AND (major_version>:major OR minor_version>:minor OR patch_version>:patch OR build>:build OR phase>:phase) ORDER BY id DESC LIMIT 1');
     $query->bindParam(':product', $product_id, PDO::PARAM_INT);
     $query->bindParam(':major', $majorversion, PDO::PARAM_INT);
     $query->bindParam(':minor', $minorversion, PDO::PARAM_INT);
@@ -25,7 +25,7 @@ function productupdate_getupdatemessage($product_id, $majorversion, $minorversio
         return NULL;
     }
 
-    return $result['message'];
+    return $result['link'];
 }
 
 ?>

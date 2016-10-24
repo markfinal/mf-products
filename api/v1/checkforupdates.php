@@ -8,7 +8,7 @@ function checkforupdates()
     $json = verifyclientdata();
 
     $product_id = product_getid($json['productname']);
-    $update_message = productupdate_getupdatemessage(
+    $update_link = productupdate_getupdatemessage(
         $product_id,
         $json['product_majorversion'],
         $json['product_minorversion'],
@@ -17,7 +17,7 @@ function checkforupdates()
         $json['product_phase']);
 
     $response = array();
-    if (is_null($update_message))
+    if (is_null($update_link))
     {
         $response['errorcode'] = ERR_PRODUCTUPDATE_ALREADY_UP_TO_DATE;
         $response['errormessage'] = 'There are no updates available.';
@@ -25,7 +25,7 @@ function checkforupdates()
     else
     {
         $response['errorcode'] = ERR_NONE;
-        $response['errormessage'] = $update_message;
+        $response['errormessage'] = $update_link;
     }
 
     header('Content-Type: application/json', true, 200);

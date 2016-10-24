@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 18, 2016 at 06:37 AM
+-- Generation Time: Oct 24, 2016 at 02:33 PM
 -- Server version: 5.7.15-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -157,7 +157,7 @@ CREATE TABLE `ProductUpdate` (
   `patch_version` int(11) NOT NULL,
   `build` int(11) NOT NULL,
   `phase` char(1) NOT NULL,
-  `message` varchar(8192) NOT NULL
+  `link` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
