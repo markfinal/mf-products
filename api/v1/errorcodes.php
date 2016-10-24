@@ -27,6 +27,7 @@ define('ERR_INCORRECT_CERTIFICATE',                302);
 
 // machine registration error codes
 define('ERR_AUTH_MACHINE_LINK_EXPIRED',            401);
+define('ERR_AUTH_MACHINE_LINK_CONFIRMED',          402);
 
 // license request error codes
 define('ERR_LICENSE_REQUEST_DATA_NOT_SPECIFIED',   501);

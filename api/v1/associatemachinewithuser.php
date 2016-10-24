@@ -79,13 +79,26 @@ function associatemachinewithuser()
         $expired = $request['expired'];
         if (0 != $expired)
         {
-            $response = array();
-            $response['errorcode'] = ERR_AUTH_MACHINE_LINK_EXPIRED;
-            $response['errormessage'] = 'Machine authorisation has expired.';
+            if (is_null($request['authorised']))
+            {
+                $response = array();
+                $response['errorcode'] = ERR_AUTH_MACHINE_LINK_EXPIRED;
+                $response['errormessage'] = 'Machine authorisation has expired.';
 
-            header('Content-Type: application/json', true, 404);
-            echo json_encode($response);
-            return;
+                header('Content-Type: application/json', true, 404);
+                echo json_encode($response);
+                return;
+            }
+            else
+            {
+                $response = array();
+                $response['errorcode'] = ERR_AUTH_MACHINE_LINK_CONFIRMED;
+                $response['errormessage'] = 'Machine authorisation has already been confirmed.';
+
+                header('Content-Type: application/json', true, 404);
+                echo json_encode($response);
+                return;
+            }
         }
 
         // this is like re-sending the email

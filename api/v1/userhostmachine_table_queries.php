@@ -21,7 +21,7 @@ function userhostmachine_table_find_existing_request($email, $MAC)
 {
     $connection = connectdb();
 
-    $query = $connection->prepare('SELECT id,url,expired FROM UserHostMachineRequest WHERE email=:email AND MAC=:MAC');
+    $query = $connection->prepare('SELECT id,url,expired,authorised FROM UserHostMachineRequest WHERE email=:email AND MAC=:MAC');
     $query->bindParam(':email', $email, PDO::PARAM_STR);
     $query->bindParam(':MAC', $MAC, PDO::PARAM_STR);
     $query->execute();
@@ -64,6 +64,15 @@ function expireSpecificMachineAuthorisationLink($connection,$id)
 {
     createTransaction($connection);
     $update_expired_requests = $connection->prepare('UPDATE UserHostMachineRequest SET expired=1 WHERE id=:id');
+    $update_expired_requests->bindParam(':id', $id, PDO::PARAM_INT);
+    $update_expired_requests->execute();
+    $connection->commit();
+}
+
+function confirmSpecificMachineAuthorisationLink($connection,$id)
+{
+    createTransaction($connection);
+    $update_expired_requests = $connection->prepare('UPDATE UserHostMachineRequest SET expired=1,authorised=NOW() WHERE id=:id');
     $update_expired_requests->bindParam(':id', $id, PDO::PARAM_INT);
     $update_expired_requests->execute();
     $connection->commit();

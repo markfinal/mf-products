@@ -77,7 +77,7 @@ function authorisemachine($url)
 
     // don't delete the requests immediately
     // TODO:
-    expireSpecificMachineAuthorisationLink($connection,$request['id']);
+    confirmSpecificMachineAuthorisationLink($connection,$request['id']);
     /*
     $delete_request = $connection->prepare("DELETE FROM UserHostMachineRequest WHERE Id=:id");
     $delete_request->bindParam(':id', $request['id'], PDO::PARAM_INT);

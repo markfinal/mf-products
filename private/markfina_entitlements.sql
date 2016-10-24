@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2016 at 02:33 PM
+-- Generation Time: Oct 24, 2016 at 02:50 PM
 -- Server version: 5.7.15-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -198,7 +198,8 @@ CREATE TABLE `UserHostMachineRequest` (
   `MAC` varchar(64) NOT NULL,
   `url` varchar(2048) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `expired` tinyint(1) NOT NULL DEFAULT '0'
+  `expired` tinyint(1) NOT NULL DEFAULT '0',
+  `authorised` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
