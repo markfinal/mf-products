@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2016 at 02:50 PM
--- Server version: 5.7.15-0ubuntu0.16.04.1
+-- Generation Time: Nov 02, 2016 at 01:56 PM
+-- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -364,48 +364,48 @@ ALTER TABLE `UserHostMachineRequest`
 -- Constraints for table `AccessToken`
 --
 ALTER TABLE `AccessToken`
-  ADD CONSTRAINT `accesstoken_userhost` FOREIGN KEY (`userhost`) REFERENCES `UserHostMachine` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `accesstoken_userhost` FOREIGN KEY (`userhost`) REFERENCES `UserHostMachine` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `Feedback`
 --
 ALTER TABLE `Feedback`
-  ADD CONSTRAINT `feedback_session` FOREIGN KEY (`session`) REFERENCES `LicenseSession` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `feedback_session` FOREIGN KEY (`session`) REFERENCES `LicenseSession` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `License`
 --
 ALTER TABLE `License`
-  ADD CONSTRAINT `license_product` FOREIGN KEY (`product`) REFERENCES `Product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `license_type` FOREIGN KEY (`type`) REFERENCES `LicenseType` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `license_user` FOREIGN KEY (`user`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `license_product` FOREIGN KEY (`product`) REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `license_type` FOREIGN KEY (`type`) REFERENCES `LicenseType` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `license_user` FOREIGN KEY (`user`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `LicenseSession`
 --
 ALTER TABLE `LicenseSession`
-  ADD CONSTRAINT `licensesession_license` FOREIGN KEY (`license`) REFERENCES `License` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `licensesession_license` FOREIGN KEY (`license`) REFERENCES `License` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `Log`
 --
 ALTER TABLE `Log`
-  ADD CONSTRAINT `log_host` FOREIGN KEY (`host`) REFERENCES `Host` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `log_session` FOREIGN KEY (`session`) REFERENCES `LicenseSession` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `log_user` FOREIGN KEY (`user`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `log_host` FOREIGN KEY (`host`) REFERENCES `Host` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `log_session` FOREIGN KEY (`session`) REFERENCES `LicenseSession` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `log_user` FOREIGN KEY (`user`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `ProductUpdate`
 --
 ALTER TABLE `ProductUpdate`
-  ADD CONSTRAINT `productupdate_product_id` FOREIGN KEY (`product`) REFERENCES `Product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `productupdate_product_id` FOREIGN KEY (`product`) REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `UserHostMachine`
 --
 ALTER TABLE `UserHostMachine`
-  ADD CONSTRAINT `userhostmachine_host` FOREIGN KEY (`host`) REFERENCES `Host` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `userhostmachine_user` FOREIGN KEY (`user`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `userhostmachine_host` FOREIGN KEY (`host`) REFERENCES `Host` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `userhostmachine_user` FOREIGN KEY (`user`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
