@@ -4,7 +4,7 @@ require_once 'api/v1/errorcodes.php';
 require_once 'api/v1/log.php';
 require_once 'api/v1/user_table_queries.php';
 
-function licensesession_create($license_id, $lic_type_name, $user_id, $product_name, $product_version, $os)
+function licensesession_create($license_id, $lic_type_name, $user_id, $host_id, $product_name, $product_version, $os)
 {
     $connection = connectdb();
 
@@ -38,7 +38,7 @@ function licensesession_create($license_id, $lic_type_name, $user_id, $product_n
 
     unset($connection);
 
-    storelog('Created session token \''.$session_token.'\' for '.$product_name.' v'.$product_version.' on '.$os, $user_id, NULL, $session_id);
+    storelog('Created session token \''.$session_token.'\' for '.$product_name.' v'.$product_version.' on '.$os, $user_id, $host_id, $session_id);
 
     return $encrypted;
 }

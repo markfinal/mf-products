@@ -117,7 +117,7 @@ function licenserequest()
     $lic_type = licensetype_gettypename($license_valid['type']);
 
     // create a new session
-    $session = licensesession_create($license_valid['id'], $lic_type, $user_and_host['user'], $json['productname'], $json['productversion'], $json['operatingsystem']);
+    $session = licensesession_create($license_valid['id'], $lic_type, $user_and_host['user'], $user_and_host['host'], $json['productname'], $json['productversion'], $json['operatingsystem']);
 
     $response = array();
     $response['session'] = base64_encode($session);
