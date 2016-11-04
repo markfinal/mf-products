@@ -71,7 +71,18 @@ function authorisemachine($url)
     $message .= '<p>You can now close this window.</p>';
     $message .= $html_suffix;
 
-    storelog("Machine has been authorised", $user_id, $host_id);
+    $logmessage = "Machine has been authorised.";
+    if (array_key_exists('HTTP_USER_AGENT', $_SERVER))
+    {
+        $logmessage .= " User agent '".$_SERVER['HTTP_USER_AGENT']."'";
+    }
+    if (array_key_exists('HTTP_REFERER', $_SERVER))
+    {
+        // Internet Explorer & Safari don't expose this
+        // but on Chrome, it says where the link came from, e.g. outlook.com
+        $logmessage .= " Referer '".$_SERVER['HTTP_REFERER']."'";
+    }
+    storelog($logmessage, $user_id, $host_id);
 
     header('Content-Type: text/html', true, 200);
     echo $message;
