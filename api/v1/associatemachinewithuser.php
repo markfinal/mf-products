@@ -107,7 +107,21 @@ function associatemachinewithuser()
         header('Content-Type: application/json', true, 200);
     }
 
-    $full_url = $_SERVER['REQUEST_SCHEME'];
+    if (array_key_exists('REQUEST_SCHEME', $_SERVER))
+    {
+        $full_url = $_SERVER['REQUEST_SCHEME'];
+    }
+    else
+    {
+        if (empty($_SERVER['HTTPS']))
+        {
+            $full_url = 'https';
+        }
+        else
+        {
+            $full_url = 'http';
+        }
+    }
     $full_url .= '://';
     $full_url .= $_SERVER['HTTP_HOST'];
     $full_url .= $url;
