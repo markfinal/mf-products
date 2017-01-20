@@ -115,11 +115,11 @@ function associatemachinewithuser()
     {
         if (empty($_SERVER['HTTPS']))
         {
-            $full_url = 'https';
+            $full_url = 'http';
         }
         else
         {
-            $full_url = 'http';
+            $full_url = 'https';
         }
     }
     $full_url .= '://';
