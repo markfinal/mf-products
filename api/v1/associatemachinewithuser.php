@@ -5,6 +5,7 @@ require_once 'api/v1/send_email.php';
 require_once 'api/v1/errorcodes.php';
 require_once 'api/v1/authorisemachine.php';
 require_once 'api/v1/userhostmachine_table_queries.php';
+require_once 'api/v1/log.php';
 
 function associatemachinewithuser()
 {
@@ -112,9 +113,10 @@ function associatemachinewithuser()
     $full_url .= $url;
     if (!filter_var($full_url, FILTER_VALIDATE_URL))
     {
+        $token = storelog('Invalid generated URL: '.$full_url);
         $response = array();
         $response['errorcode'] = ERR_SERVER_ERROR;
-        $response['errormessage'] = 'Invalid generated URL: '.$full_url;
+        $response['errortoken'] = $token;
         header('Content-Type: application/json', true, 500);
         echo json_encode($response);
         exit();
