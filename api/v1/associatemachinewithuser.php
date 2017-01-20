@@ -110,6 +110,15 @@ function associatemachinewithuser()
     $full_url .= '://';
     $full_url .= $_SERVER['HTTP_HOST'];
     $full_url .= $url;
+    if (!filter_var($full_url, FILTER_VALIDATE_URL))
+    {
+        $response = array();
+        $response['errorcode'] = ERR_SERVER_ERROR;
+        $response['errormessage'] = 'Invalid generated URL: '.$full_url;
+        header('Content-Type: application/json', true, 500);
+        echo json_encode($response);
+        exit();
+    }
 
     $email_message = '<html>';
     $email_message .= '<body>';
